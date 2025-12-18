@@ -1,24 +1,66 @@
-{
- "cells": [
-  {
-   "cell_type": "markdown",
-   "id": "9f85371b",
-   "metadata": {},
-   "source": [
-    "# W5A1"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "0ec5049f",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def Max_Of_Two(a, b):\n",
-    "    return a if a > b else b\n",
-    "\n",
-    "\n"
-   ]
-  },
-}
+#Test 1: nhập vào n, sao cho n là số nto và tính tổng ước nguyên tố của n ( tối ưu code )
+
+import math
+
+def tonguocnguyento(n):
+    if n <= 0:
+        return "khong phai so duong"
+    
+    tong = 0
+    
+    if n % 2 == 0:
+        tong += 2
+        while n % 2 == 0:
+            n //= 2
+            
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            tong += i
+            while n % i == 0:
+                n //= i
+                
+    if n > 1:
+        tong += n        
+    return tong
+
+n = int(input("n thuoc N, n = "))
+A = tonguocnguyento(n)
+print(f"Tong uoc nguyen to: {A}")
+
+
+
+#Test 2: Cho 1 dãy đã sắp xếp từ bé đến lớn, nhập vào k sao cho k thuộc dãy và cho biết vị trí của k ( tối ưu code )
+
+A = [1 , 4 , 7 , 8 , 12, 15 , 20, 31, 45 , 50]
+low = 0
+high = len(A) - 1
+k = int(input("k = "))
+while low <= high : 
+    Me = (low + high)//2
+    Mid = A[Me]
+    
+    if k == Mid:
+        print(f"{k} ở vị trí thứ {Me}")
+        break
+    elif k < Mid:
+        high = Me -1
+    elif k > Mid:
+        low = Me+ 1
+else:
+    print("lỗi") 
+
+
+#Test 3: Nhập vào X, sao cho X là số đối xứng ( tối ưu code )
+
+x = int(input("x =  "))
+so_bd = x
+so_dao_ngc = 0
+while so_bd != 0:
+    so_du = so_bd % 10
+    so_bd //= 10
+    so_dao_ngc = so_du + so_dao_ngc*10
+if x == so_dao_ngc:
+    print("x la so doi xung")
+else:
+    print("x khong phai so doi xung")
+    
